@@ -41,8 +41,11 @@ class Product(BaseModel):
 # Add your own schemas here:
 # --------------------------------------------------
 
-# Note: The Flames database viewer will automatically:
-# 1. Read these schemas from GET /schema endpoint
-# 2. Use them for document validation when creating/editing
-# 3. Handle all database operations (CRUD) directly
-# 4. You don't need to create any database endpoints!
+class Todo(BaseModel):
+    """
+    Todos collection schema
+    Collection name: "todo"
+    """
+    title: str = Field(..., min_length=1, max_length=200, description="Task title")
+    completed: bool = Field(False, description="Completion status")
+    notes: Optional[str] = Field(None, max_length=1000, description="Optional details")
